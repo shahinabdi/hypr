@@ -31,12 +31,12 @@ fi
 
 yay -S --needed sddm-theme-sugar-candy-git
 
-theme_dir=/usr/share/sddm/themes/sugar-candy
+theme_dir=/usr/share/sddm/themes/Sugar-Candy
 if ! sudo test -d "$theme_dir"; then
     printf 'Sugar Candy was installed, but its theme directory was not found: %s\n' "$theme_dir" >&2
     exit 1
 fi
-config=/etc/sddm.conf
+
 config=/etc/sddm.conf
 updated_config="$work_dir/sddm.conf"
 
@@ -55,7 +55,7 @@ BEGIN {
 {
     if ($0 ~ /^[[:space:]]*\[[^]]+\][[:space:]]*$/) {
         if (in_theme && !set_current) {
-            print "Current=sugar-candy"
+            print "Current=Sugar-Candy"
             set_current = 1
         }
         in_theme = (tolower($0) ~ /^[[:space:]]*\[[[:space:]]*theme[[:space:]]*\][[:space:]]*$/)
@@ -67,7 +67,7 @@ BEGIN {
 
     if (in_theme && tolower($0) ~ /^[[:space:]]*current[[:space:]]*=/) {
         if (!set_current) {
-            print "Current=sugar-candy"
+            print "Current=Sugar-Candy"
             set_current = 1
         }
         next
@@ -77,9 +77,9 @@ BEGIN {
 }
 END {
     if (in_theme && !set_current)
-        print "Current=sugar-candy"
+        print "Current=Sugar-Candy"
     if (!found_theme)
-        print "\n[Theme]\nCurrent=sugar-candy"
+        print "\n[Theme]\nCurrent=Sugar-Candy"
 }
 ' "$updated_config" > "$updated_config.new"
 
