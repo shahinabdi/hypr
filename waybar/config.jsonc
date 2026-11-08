@@ -1,0 +1,85 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 34,
+  "spacing": 8,
+  "margin-top": 8,
+  "margin-left": 12,
+  "margin-right": 12,
+
+  "modules-left": [
+    "hyprland/workspaces",
+    "hyprland/window"
+  ],
+
+  "modules-center": [
+    "clock"
+  ],
+
+  "modules-right": [
+    "cpu",
+    "memory",
+    "wireplumber",
+    "battery",
+    "tray",
+    "custom/quicksettings",
+    "custom/power"
+  ],
+
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "on-click": "activate",
+    "sort-by-number": true
+  },
+
+  "hyprland/window": {
+    "format": "{}",
+    "max-length": 35
+  },
+
+  "clock": {
+    "format": "󰥔  {:%H:%M  |  %d %b}",
+    "tooltip-format": "{:%A, %d %B %Y}"
+  },
+
+  "cpu": {
+    "format": "  {usage}%",
+    "interval": 5
+  },
+
+  "memory": {
+    "format": "  {percentage}%",
+    "interval": 5
+  },
+
+  "wireplumber": {
+    "format": "󰕾  {volume}%",
+    "format-muted": "󰖁  Muted",
+    "on-click": "pavucontrol"
+  },
+
+  "battery": {
+    "format": "{icon}  {capacity}%",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "states": {
+      "warning": 25,
+      "critical": 10
+    }
+  },
+
+  "tray": {
+    "spacing": 8
+  },
+
+  "custom/quicksettings": {
+    "format": "󰒓",
+    "tooltip": "Quick Settings",
+    "on-click": "qs -c arch-sidebar"
+  },
+
+  "custom/power": {
+    "format": "⏻",
+    "tooltip": "Power Menu",
+    "on-click": "~/.config/scripts/power-menu.sh"
+  }
+}
