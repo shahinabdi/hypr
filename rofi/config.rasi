@@ -35,6 +35,12 @@ inputbar {
     padding: 12px;
     border-radius: 10px;
     children: [prompt, entry];
+    text-color: @fg;
+}
+
+prompt,
+entry {
+    text-color: @fg;
 }
 
 listview {
@@ -42,20 +48,62 @@ listview {
     lines: 7;
     spacing: 6px;
     padding: 12px 0 0;
+    background-color: @bg;
 }
 
 element {
     padding: 10px;
     border-radius: 8px;
+    background-color: @bg-alt;
+    text-color: @fg;
+}
+
+element normal.normal,
+element alternate.normal {
+    background-color: @bg-alt;
+    text-color: @fg;
+}
+
+element selected.normal {
+    background-color: @blue;
+    text-color: @bg;
+}
+
+element normal.active,
+element alternate.active,
+element selected.active {
+    background-color: @bg-alt;
+    text-color: @fg;
+}
+
+element normal.urgent,
+element alternate.urgent,
+element selected.urgent {
+    background-color: @red;
+    text-color: @bg;
+}
+
+message {
+    padding: 10px;
+    border: 0;
+    background-color: @bg;
+}
+
+textbox {
+    text-color: @fg;
     background-color: @bg;
 }
 
 element selected {
-    background-color: @bg-alt;
-    text-color: @blue;
+    background-color: @blue;
+    text-color: @bg;
 }
 
 element-text {
     background-color: transparent;
     text-color: @fg;
+}
+
+element-icon {
+    background-color: transparent;
 }

@@ -8,7 +8,7 @@ Item {
     width: 300
     height: 92
 
-    property bool enabled: false
+    property bool bluetoothEnabled: false
     property string status: "Checking Bluetooth..."
 
     Process {
@@ -18,8 +18,8 @@ Item {
 
         stdout: StdioCollector {
             onStreamFinished: {
-                root.enabled = this.text.includes("Powered: yes")
-                root.status = root.enabled ? "Bluetooth enabled" : "Bluetooth disabled"
+                root.bluetoothEnabled = this.text.includes("Powered: yes")
+                root.status = root.bluetoothEnabled ? "Bluetooth enabled" : "Bluetooth disabled"
             }
         }
     }
@@ -66,11 +66,11 @@ Item {
                     width: 58
                     height: 28
                     radius: 14
-                    color: root.enabled ? "#7aa2f7" : "#414868"
+                    color: root.bluetoothEnabled ? "#7aa2f7" : "#414868"
 
                     Text {
                         anchors.centerIn: parent
-                        text: root.enabled ? "ON" : "OFF"
+                        text: root.bluetoothEnabled ? "ON" : "OFF"
                         color: "#1a1b26"
                         font.bold: true
                         font.pixelSize: 11
@@ -82,7 +82,7 @@ Item {
                             toggleProcess.command = [
                                 "bluetoothctl",
                                 "power",
-                                root.enabled ? "off" : "on"
+                                root.bluetoothEnabled ? "off" : "on"
                             ]
                             toggleProcess.running = true
                         }

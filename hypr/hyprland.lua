@@ -36,8 +36,8 @@ hl.monitor({
 
 -- Set programs that you use
 local terminal    = "kitty"
-local fileManager = "dolphin"
-local menu        = "hyprlauncher"
+local fileManager = "thunar"
+local menu        = "rofi -show drun"
 
 
 -------------------
@@ -46,14 +46,16 @@ local menu        = "hyprlauncher"
 
 -- See https://wiki.hypr.land/configuring/core/autostart/
 
--- Autostart necessary processes (like notifications daemons, status bars, etc.)
--- Or execute your favorite apps at launch like this:
---
--- hl.on("hyprland.start", function () 
---   hl.exec_cmd(terminal)
---   hl.exec_cmd("nm-applet")
---   hl.exec_cmd("waybar & hyprpaper & firefox")
--- end)
+hl.on("hyprland.start", function()
+    hl.exec_cmd("waybar")
+    hl.exec_cmd("qs -c arch-sidebar")
+    hl.exec_cmd("hyprpaper")
+    hl.exec_cmd("hypridle")
+    hl.exec_cmd("swaync")
+    hl.exec_cmd("wl-paste --type text --watch cliphist store")
+    hl.exec_cmd("wl-paste --type image --watch cliphist store")
+    hl.exec_cmd("systemctl --user start hyprpolkitagent")
+end)
 
 
 -------------------------------
@@ -272,13 +274,21 @@ hl.device({
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/configuring/core/binds/ for more
-hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
-local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
--- closeWindowBind:set_enabled(false)
+hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("hyprctl dispatch killactive"))
+hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("hyprctl dispatch killactive"))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. " + H", hl.dsp.exec_cmd("bash ~/.config/scripts/keybinds.sh"))
+hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("qs -c arch-sidebar ipc call sidebar toggle"))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("~/.config/scripts/power-menu.sh"))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("~/.config/scripts/screenshot.sh region"))
+hl.bind("PRINT", hl.dsp.exec_cmd("~/.config/scripts/screenshot.sh full"))
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("~/.config/scripts/clipboard-menu.sh"))
+hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd("hyprctl dispatch togglefloating"))
+hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("hyprctl dispatch fullscreen"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 
@@ -299,7 +309,7 @@ end
 
 -- Example special workspace (scratchpad)
 hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+hl.bind(mainMod .. " + SHIFT + T", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
