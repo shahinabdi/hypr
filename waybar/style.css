@@ -57,3 +57,12 @@ window#waybar {
     color: #7aa2f7;
     padding: 0 8px;
 }
+
+#custom-focus-mode {
+    color: #565f89;
+    padding: 0 8px;
+}
+
+#custom-focus-mode.active {
+    color: #e0af68;
+}

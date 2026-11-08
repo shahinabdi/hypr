@@ -22,6 +22,7 @@
     "wireplumber",
     "battery",
     "tray",
+    "custom/focus-mode",
     "custom/quicksettings",
     "custom/power"
   ],
@@ -71,10 +72,17 @@
     "spacing": 8
   },
 
+  "custom/focus-mode": {
+    "exec": "~/.config/scripts/focus-mode.sh status",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "~/.config/scripts/focus-mode.sh toggle"
+  },
+
   "custom/quicksettings": {
     "format": "󰒓",
     "tooltip": "Quick Settings",
-    "on-click": "qs -c arch-sidebar"
+    "on-click": "qs -c arch-sidebar ipc call sidebar toggle"
   },
 
   "custom/power": {
