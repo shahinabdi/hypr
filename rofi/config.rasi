@@ -18,27 +18,31 @@ configuration {
 }
 
 window {
-    width: 600px;
-    border: 2px;
+    width: 640px;
+    border: 1px;
     border-color: @border;
-    border-radius: 16px;
+    border-radius: 18px;
     background-color: @bg;
 }
 
 mainbox {
-    padding: 16px;
+    padding: 18px;
     background-color: @bg;
 }
 
 inputbar {
     background-color: @bg-alt;
-    padding: 12px;
-    border-radius: 10px;
+    padding: 13px 14px;
+    border-radius: 12px;
+    spacing: 10px;
     children: [prompt, entry];
     text-color: @fg;
 }
 
-prompt,
+prompt {
+    text-color: @blue;
+}
+
 entry {
     text-color: @fg;
 }
@@ -46,14 +50,14 @@ entry {
 listview {
     columns: 1;
     lines: 7;
-    spacing: 6px;
-    padding: 12px 0 0;
+    spacing: 10px;
+    padding: 16px 0px 0px;
     background-color: @bg;
 }
 
 element {
-    padding: 10px;
-    border-radius: 8px;
+    padding: 12px;
+    border-radius: 10px;
     background-color: @bg-alt;
     text-color: @fg;
 }
@@ -66,6 +70,10 @@ element alternate.normal {
 
 element selected.normal {
     background-color: @blue;
+    text-color: @bg;
+}
+
+element selected.normal element-text {
     text-color: @bg;
 }
 
@@ -94,16 +102,12 @@ textbox {
     background-color: @bg;
 }
 
-element selected {
-    background-color: @blue;
-    text-color: @bg;
-}
-
 element-text {
     background-color: transparent;
     text-color: @fg;
 }
 
 element-icon {
+    size: 24px;
     background-color: transparent;
 }
